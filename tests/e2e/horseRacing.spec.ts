@@ -58,7 +58,7 @@ test.describe('Horse Racing Game', () => {
     await page.locator('button:has-text("GENERATE")').click()
     await page.locator('button:has-text("START RACES")').click()
     
-    const horseEmoji = page.locator('.bg-green-600 .text-3xl').first()
+    const horseEmoji = page.locator('.bg-green-600 .text-2xl').first()
     await expect(horseEmoji).toHaveText('🐎')
     
     const initialPosition = await horseEmoji.evaluate(el => el.getBoundingClientRect().left)

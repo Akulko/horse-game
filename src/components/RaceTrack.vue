@@ -4,16 +4,15 @@
     <div class="absolute top-2 right-4 text-white text-lg font-bold">FINISH</div>
     
     <div v-if="currentRace" class="mt-8">
-      <div v-for="(horse, index) in currentRace.horses" :key="horse.id" class="relative mb-4 pb-2">
-        <div class="flex items-center gap-3">
-          <div class="text-white text-sm font-bold w-6 text-center bg-white bg-opacity-20 rounded px-1">{{ index + 1 }}</div>
+      <div v-for="(horse, index) in currentRace.horses" :key="horse.id" class="relative mb-6">
+        <div class="text-white text-sm font-medium mb-1 ml-2">{{ horse.name }}</div>
+        <div class="flex items-center">
           <div class="flex-1 h-12 bg-green-500 bg-opacity-60 rounded-lg relative overflow-hidden border border-white border-opacity-30">
-            <div class="absolute transition-all duration-100 ease-linear top-1/2 transform -translate-y-1/2" :style="{ left: `${getHorsePositionPercentage(horse)}%`, transform: 'translate(-50%, -50%)' }">
-              <div class="text-3xl">🐎</div>
+            <div class="absolute transition-all duration-100 ease-linear top-1/2 transform -translate-y-1/2" :style="{ left: `${getHorsePositionPercentage(horse)}%`, transform: 'translateX(-50%)' }">
+              <div class="w-10 h-10 rounded-full flex items-center justify-center text-2xl" :style="{ backgroundColor: horse.color }">🐎</div>
             </div>
             <div class="absolute right-0 top-0 h-full w-2 bg-red-500"></div>
             <div class="absolute left-2 top-1/2 transform -translate-y-1/2 w-1 h-8 bg-white opacity-40"></div>
-            <div class="absolute left-3 bottom-0 text-xs text-white font-medium bg-black bg-opacity-40 px-2 py-0.5 rounded-t max-w-32 truncate">{{ horse.name }}</div>
           </div>
         </div>
       </div>
@@ -48,9 +47,9 @@ const currentRaceRound = computed(() => {
 })
 
 function getHorsePositionPercentage(horse: any): number {
-  if (typeof horse.position !== 'number' || !currentRace.value) return 0
-  if (horse.position === 0) return 0
-  return Math.min((horse.position / currentRace.value.distance) * 88, 88) + 2
+  if (typeof horse.position !== 'number' || !currentRace.value) return 6
+  if (horse.position === 0) return 6
+  return Math.min((horse.position / currentRace.value.distance) * 88, 88) + 6
 }
 
 function getOrdinal(n: number): string {
